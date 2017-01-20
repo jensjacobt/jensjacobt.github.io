@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>E-mails fra Google Drev (copy/paste)</title>
+    <style media="screen" type="text/css">
+      body {
+        font-family: "Arial", Sans;
+        font-size: 11pt;
+      }
+      button, textarea, p {
+        float: left;
+        clear: both;
+      }
+
+      p {
+        font-weight: bold;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.16/clipboard.min.js"></script>
+
+    <script type="text/javascript">
+      function filter() {
+        // Define
+        var input = document.getElementById("input");
+        var output = document.getElementById("output");
+        var text = input.value;
+
+        // Replace
+        text = text.replace(/^[^@]*$/gm, ""); // .replace("\n\n", "\n");
+        text = text.replace(/^\s*[\r\n]/gm, "");
+
+        // Output
+        output.value = text;
+      }
+    </script>
+  </head>
+  <body onload="new Clipboard('.btn');">
+    <p>Input:</p>
+    <textarea id="input" name="input" rows="8" cols="80"></textarea>
+    <p> </p>
+    <button onclick="filter()" type="submit" name="button">Filtrér</button>
+    <p> </p>
+    <p>Output:</p>
+    <textarea id="output" name="output" rows="8" cols="80"></textarea>
+    <p> </p>
+    <button class="btn" data-clipboard-action="copy" data-clipboard-target="#output">
+      Kopiér til udklipsholderen
+    </button>
+  </body>
+</html>
